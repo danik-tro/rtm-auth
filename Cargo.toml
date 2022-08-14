@@ -6,6 +6,11 @@ authors=["Daniil Trotsenko daniil.trotsenko.dev@gmail.com"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[[bin]] # Bin to run actix-web API
+name = "api"
+path = "src/main.rs"
+
+
 [dependencies]
 actix-web = "2.0.0"
 actix-web-httpauth = { git = "https://github.com/actix/actix-web-httpauth" }
