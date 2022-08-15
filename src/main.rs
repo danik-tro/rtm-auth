@@ -1,19 +1,30 @@
 use actix_web::{web, App, HttpServer};
+use std::env;
 
-mod handlers;
+mod app;
 
-#[actix_rt::main]
+pub struct AppState {
+    app_name: String,
+    api_version: String,
+}
+
+#[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    std::env::set_var("RUST_LOG", "actix_web=debug");
+    if env::var("RUST_LOG").ok().is_none() {
+        env::set_var("RUST_LOG", "actix_web=info");
+    }
 
-    HttpServer::new(move || {
+    let bind_address = env::var("BIND_ADDRESS").unwrap_or(String::from("127.0.0.1:8080"));
+
+    HttpServer::new(|| {
         App::new()
-            .route("/users", web::get().to(handlers::get_users))
-            .route("/users/{id}", web::get().to(handlers::get_user_by_id))
-            .route("/users", web::post().to(handlers::add_user))
-            .route("/users/{id}", web::delete().to(handlers::delete_user))
+            .app_data(web::Data::new(AppState {
+                app_name: String::from("rtm-auth"),
+                api_version: String::from("v0.1.0"),
+            }))
+            .configure(app::config)
     })
-    .bind("127.0.0.1:8000")?
+    .bind(&bind_address)?
     .run()
     .await
 }
