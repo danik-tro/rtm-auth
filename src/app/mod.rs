@@ -4,6 +4,11 @@ use super::app::views as root_views;
 
 use actix_web::{web, HttpResponse};
 
+pub struct AppState {
+    pub app_name: String,
+    pub api_version: String,
+}
+
 pub fn config(cfg: &mut web::ServiceConfig) {
     cfg.service(
         web::resource("/")
