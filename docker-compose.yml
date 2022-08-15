@@ -1,17 +1,17 @@
 ---
 version: '3.8'
 services:
-    db:
+    rtm_auth_db:
         image: postgres:14.1-alpine
         restart: always
         environment:
-            - POSTGRES_USER=postgres
-            - POSTGRES_PASSWORD=postgres
-            - POSTGRES_DB=courses_master
+            - POSTGRES_USER=rtm_auth
+            - POSTGRES_PASSWORD=rtm_auth
+            - POSTGRES_DB=auth
         ports:
             - 5432:5432
         volumes:
-            - db:/var/postgresql/data
+            - rtm_auth_db:/var/postgresql/data
 volumes:
-    db:
+    rtm_auth_db:
         driver: local
