@@ -11,14 +11,6 @@ on:
         - hotfix/*
       tags:
         - v*
-    pull_request:
-      branches:
-        - master
-        - refactor/* 
-        - release/*
-        - feat/*
-        - bugfix/*
-        - hotfix/*
 
 jobs:
   clippy-fmt:
