@@ -1,25 +1,27 @@
-use actix_web::{web, App, HttpServer};
-use std::env;
+#[tokio::main]
+async fn main() -> anyhow::Result<()> {
+    // build our application with a route
+    let app = axum::Router::new()
+        // `GET /health` the `health check` endpoint
+        .route("/health", axum::routing::get(healthz));
 
-mod app;
+    let listener = tokio::net::TcpListener::bind("127.0.0.1:8000")
+        .await
+        .unwrap();
+    axum::serve(listener, app).await.unwrap();
 
-#[actix_web::main]
-async fn main() -> std::io::Result<()> {
-    if env::var("RUST_LOG").ok().is_none() {
-        env::set_var("RUST_LOG", "actix_web=info");
-    }
+    Ok(())
+}
 
-    let bind_address = env::var("BIND_ADDRESS").unwrap_or_else(|_| String::from("127.0.0.1:8080"));
+#[derive(serde::Serialize)]
+struct HealthzResponse {
+    status: String,
+}
 
-    HttpServer::new(|| {
-        App::new()
-            .app_data(web::Data::new(app::AppState {
-                app_name: String::from("rtm-auth"),
-                api_version: String::from("v0.1.0"),
-            }))
-            .configure(app::config)
-    })
-    .bind(&bind_address)?
-    .run()
-    .await
+async fn healthz() -> (axum::http::StatusCode, axum::Json<HealthzResponse>) {
+    let response = HealthzResponse {
+        status: "Ok".into(),
+    };
+
+    (axum::http::StatusCode::OK, axum::Json(response))
 }
