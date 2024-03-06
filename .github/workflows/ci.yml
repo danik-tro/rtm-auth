@@ -7,6 +7,7 @@ on:
         - refactor/* 
         - release/*
         - feat/*
+        - feature/*
         - bugfix/*
         - hotfix/*
       tags:
