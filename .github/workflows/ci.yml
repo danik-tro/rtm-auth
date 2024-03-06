@@ -34,7 +34,7 @@ jobs:
         run: cargo fmt --all -- --check
 
       - name: Run cargo clippy
-        run: cargo clippy --all-targets --all-features -- -D warnings  -W clippy::all -W clippy::pedantic
+        run: cargo clippy --profile dev-ci --all-targets --all-features -- -D warnings  -W clippy::all -W clippy::pedantic
 
   build:
     needs: [clippy-fmt]
@@ -55,4 +55,4 @@ jobs:
           toolchain: ${{ matrix.rust }}
 
       - name: Run cargo check
-        run: cargo build 
+        run: cargo build --profile dev-ci
