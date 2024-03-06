@@ -13,3 +13,55 @@ serde_json = "1"
 
 async-trait = "0.1"
 anyhow = "1.0"
+
+[profile.dev-mode]
+inherits = "dev"
+incremental = false
+
+[profile.dev-ci]
+inherits = "dev-mode"
+strip = true
+
+[profile.dev-ci-checks-off]
+inherits = "dev-ci"
+debug = false
+debug-assertions = false
+overflow-checks = false
+
+[profile.release]
+opt-level = 1
+debug = false
+debug-assertions = false
+overflow-checks = false
+incremental = false
+
+[profile.release-thin-lto]
+inherits = "release"
+strip = true
+lto = "thin"
+
+[profile.release-opt-2]
+inherits = "release"
+opt-level = 2
+
+[profile.release-opt-2-thin-lto]
+inherits = "release-opt-2"
+strip = true
+lto = "thin"
+
+[profile.release-opt3-thin-lto]
+inherits = "release"
+opt-level = 3
+strip = true
+lto = "thin"
+
+[profile.release-opt-3]
+inherits = "release"
+opt-level = 3
+strip = true
+lto = false
+codegen-units = 1
+
+[profile.release-opt-3-lto]
+inherits = "release-opt-3"
+lto = true
