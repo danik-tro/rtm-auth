@@ -1,0 +1,66 @@
+name: CI 
+
+on:
+    push:
+      branches:
+        - master
+        - refactor/* 
+        - release/*
+        - feat/*
+        - bugfix/*
+        - hotfix/*
+      tags:
+        - v*
+    pull_request:
+      branches:
+        - master
+        - refactor/* 
+        - release/*
+        - feat/*
+        - bugfix/*
+        - hotfix/*
+
+jobs:
+  clippy-fmt:
+    name: Fmt & Clippy
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        rust:
+          - 1.74.0 
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4.1.0
+
+      - name: Install toolchain
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: ${{ matrix.rust }}
+          components: rustfmt, clippy
+
+      - name: Run cargo fmt
+        run: cargo fmt --all -- --check
+
+      - name: Run cargo clippy
+        run: cargo clippy --all-targets --all-features -- -D warnings  -W clippy::all -W clippy::pedantic
+
+  build:
+    needs: [clippy-fmt]
+    name: Build 
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        rust:
+          - 1.74.0
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4.1.0
+
+      - name: Install toolchain
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: ${{ matrix.rust }}
+
+      - name: Run cargo check
+        run: cargo build 
