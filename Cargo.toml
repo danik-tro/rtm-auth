@@ -25,6 +25,11 @@ utoipa = {version = "4.2.0", features = ["axum_extras"]}
 utoipa-swagger-ui = { version = "6.0.0", features = ["axum"] }
 utoipa-redoc = { version = "3.0.0", features = ["axum"] }
 
+# tracing
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json", "time"] }
+tracing-futures = "0.2.5"
+
 [profile.dev-mode]
 inherits = "dev"
 incremental = false
