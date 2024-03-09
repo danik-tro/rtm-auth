@@ -1,0 +1,11 @@
+[db]
+db_uri = "postgres://demo_user:demo_pass@localhost/demo_db"
+pool_size = 35
+run_migrations = true
+
+[server]
+debug = true
+
+jwt_secret_key = "veryverysercretkey"
+jwt_schema_key = "Bearer"
+jwt_token_exp = 1800 

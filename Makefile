@@ -1,5 +1,7 @@
 .PHONY: install api api-prod test
 
+run: 
+	cargo run -- --config ${CONFIG} run-server --bind ${BIND} 
 
 install:
 	cargo install --path .
