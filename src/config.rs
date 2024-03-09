@@ -21,10 +21,41 @@ impl Server {
     }
 }
 
+#[derive(Debug, serde::Deserialize, Clone, Copy)]
+#[serde(rename_all_fields = "lowercase")]
+pub enum TracingLevelFilter {
+    Off,
+    Trace,
+    Debug,
+    Warn,
+    Error,
+    Info,
+}
+
+#[derive(Debug, serde::Deserialize, Clone, Copy)]
+#[serde(rename_all_fields = "lowercase")]
+pub enum TracingFormat {
+    Pretty,
+    Json,
+}
+
+#[derive(Debug, serde::Deserialize, Clone)]
+pub struct Tracing {
+    pub format: TracingFormat,
+    pub level: TracingLevelFilter,
+    pub off: Option<Vec<String>>,
+    pub debug: Option<Vec<String>>,
+    pub error: Option<Vec<String>>,
+    pub warn: Option<Vec<String>>,
+    pub info: Option<Vec<String>>,
+    pub trace: Option<Vec<String>>,
+}
+
 #[derive(Debug, serde::Deserialize, Clone)]
 pub struct Config {
     pub db: Db,
     pub server: Server,
+    pub tracing: Tracing,
 }
 
 impl Config {

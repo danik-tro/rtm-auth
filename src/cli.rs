@@ -13,6 +13,9 @@ pub struct Cli {
     /// Workers
     #[arg(long = "workers", default_value_t = num_cpus::get())]
     pub workers: usize,
+    /// Do not print log messages
+    #[arg(long, short, default_value_t = false)]
+    pub quiet: bool,
 }
 
 #[derive(Subcommand)]

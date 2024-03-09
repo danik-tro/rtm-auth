@@ -1,3 +1,20 @@
+[tracing]
+format = "json" # Values: pretty, json
+level = "debug" # Values: DEBUG,ERROR,INFO,WARN,TRACE,OFF
+
+off = [
+    "tokio",
+    "hyper",
+    "axum",
+    "tower"
+] 
+debug = ["rtm-auth"] 
+error = ["rtm-auth"]
+info = ["rtm-auth"]  
+warn = ["rtm-auth"]
+trace = ["rtm-auth"]
+
+
 [db]
 db_uri = "postgres://demo_user:demo_pass@localhost/demo_db"
 pool_size = 35
