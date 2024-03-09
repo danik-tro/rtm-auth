@@ -5,7 +5,6 @@ edition = "2021"
 authors = ["Daniil Trotsenko <daniil.trotsenko.dev@gmail.com>"]
 
 [dependencies]
-axum = "0.7.4"
 tokio = { version = "1.0", features = ["full"]}
 
 config = "0.14.0"
@@ -24,6 +23,14 @@ num_cpus = "1.0"
 utoipa = {version = "4.2.0", features = ["axum_extras"]}
 utoipa-swagger-ui = { version = "6.0.0", features = ["axum"] }
 utoipa-redoc = { version = "3.0.0", features = ["axum"] }
+
+axum = "0.7.4"
+tower = {version = "0.4.13", features = ["full"]}
+tower-http = { version = "0.5.2", features = ["full"] }
+
+uuid7 = { version = "0.7.2", features = ["uuid", "serde"] }
+uuid = "1.2.1"
+
 
 # tracing
 tracing = "0.1"

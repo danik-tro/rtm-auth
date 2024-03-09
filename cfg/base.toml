@@ -1,12 +1,11 @@
 [tracing]
-format = "json" # Values: pretty, json
+format = "pretty" # Values: pretty, json
 level = "debug" # Values: DEBUG,ERROR,INFO,WARN,TRACE,OFF
 
 off = [
     "tokio",
     "hyper",
     "axum",
-    "tower"
 ] 
 debug = ["rtm-auth"] 
 error = ["rtm-auth"]
