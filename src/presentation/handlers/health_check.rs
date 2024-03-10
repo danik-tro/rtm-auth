@@ -1,3 +1,5 @@
+use crate::presentation::constants::HEALTH_CHECK_PATH;
+
 #[derive(serde::Serialize, utoipa::ToSchema)]
 pub struct HealthResponse {
     status: String,
@@ -11,7 +13,7 @@ impl axum::response::IntoResponse for HealthResponse {
 
 #[utoipa::path(
     get,
-    path = "/health",
+    path = HEALTH_CHECK_PATH,
     responses(
         (status = 200, description = "Heatlh check", body = HealthResponse)
     )
