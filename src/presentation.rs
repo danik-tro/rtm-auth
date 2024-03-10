@@ -1,3 +1,4 @@
+pub mod constants;
 pub mod docs;
 pub mod handlers;
 
@@ -11,6 +12,8 @@ use tower_http::{
     trace::{DefaultMakeSpan, DefaultOnResponse, TraceLayer},
     LatencyUnit, ServiceBuilderExt,
 };
+
+use self::constants::HEALTH_CHECK_PATH;
 
 #[derive(Clone)]
 pub struct MakeRequestIdUuid7;
@@ -48,7 +51,7 @@ pub async fn application_router() -> axum::Router {
     let router = axum::Router::new()
         // `GET /health` the `health check` endpoint
         .route(
-            "/health",
+            HEALTH_CHECK_PATH,
             axum::routing::get(handlers::health_check::healthz),
         )
         .layer(middleware);
