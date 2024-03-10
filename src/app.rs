@@ -27,7 +27,7 @@ pub fn run() -> anyhow::Result<()> {
 }
 
 async fn run_server(_config: &crate::config::Config, addr: &SocketAddr) -> anyhow::Result<()> {
-    let router = crate::presentation::application_router().await;
+    let router = crate::api::application_router().await;
     let listener = tokio::net::TcpListener::bind(addr).await?;
 
     tracing::info!("Running application on {}", addr);
