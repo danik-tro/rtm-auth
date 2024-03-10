@@ -36,6 +36,8 @@ tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter", "json", "time"] }
 tracing-futures = "0.2.5"
 
+sqlx = { version = "0.6.3", features = ["runtime-tokio-native-tls", "postgres", "uuid", "time", "migrate", "offline"] }
+
 [profile.dev-mode]
 inherits = "dev"
 incremental = false

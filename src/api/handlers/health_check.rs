@@ -1,4 +1,4 @@
-use crate::presentation::constants::HEALTH_CHECK_PATH;
+use crate::api::constants::HEALTH_CHECK_PATH;
 
 #[derive(serde::Serialize, utoipa::ToSchema)]
 pub struct HealthResponse {
