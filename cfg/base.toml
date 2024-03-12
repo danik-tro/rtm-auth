@@ -15,7 +15,7 @@ trace = ["rtm-auth"]
 
 
 [db]
-db_uri = "postgres://demo_user:demo_pass@localhost/demo_db"
+db_uri = "postgres://demo_user:demo_pass@localhost/auth"
 pool_size = 35
 run_migrations = true
 
