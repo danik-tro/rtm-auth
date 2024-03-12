@@ -1,4 +1,11 @@
-use std::net::SocketAddr;
+use std::{net::SocketAddr, sync::Arc};
+
+use axum::Extension;
+
+use crate::{
+    infrastructure::{databases::postgres::get_connection_pool, repositories::UserSqlxRepository},
+    services::RegistrationServiceImpl,
+};
 
 /// Run the application with provided CLI arguments.
 ///
@@ -26,10 +33,16 @@ pub fn run() -> anyhow::Result<()> {
     Ok(())
 }
 
-async fn run_server(_config: &crate::config::Config, addr: &SocketAddr) -> anyhow::Result<()> {
-    let router = crate::api::application_router().await;
-    let listener = tokio::net::TcpListener::bind(addr).await?;
+async fn run_server(config: &crate::config::Config, addr: &SocketAddr) -> anyhow::Result<()> {
+    let pool = get_connection_pool(&config.db).await?;
+    let user_repository = Arc::new(UserSqlxRepository::new(pool.clone()));
+    let registration_service = Arc::new(RegistrationServiceImpl::new(user_repository));
 
+    let router = crate::api::application_router()
+        .await
+        .layer(Extension(registration_service));
+
+    let listener = tokio::net::TcpListener::bind(addr).await?;
     tracing::info!("Running application on {}", addr);
     axum::serve(listener, router).await?;
 
