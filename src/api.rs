@@ -1,7 +1,9 @@
 pub mod constants;
 pub mod docs;
+mod errors;
 pub mod handlers;
 
+pub use errors::ApiError;
 use std::{sync::Arc, time::Duration};
 
 use axum::{body::Bytes, http::header};
