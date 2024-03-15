@@ -2,7 +2,7 @@ use utoipa::OpenApi;
 use utoipa_redoc::{Redoc, Servable};
 use utoipa_swagger_ui::SwaggerUi;
 
-use super::handlers::health_check;
+use super::{errors::ApiErrorMessage, handlers::health_check};
 
 #[derive(OpenApi)]
 #[openapi(
@@ -12,6 +12,7 @@ use super::handlers::health_check;
     components(
         schemas(
             health_check::HealthResponse,
+            ApiErrorMessage,
         ),
     ),
     tags(

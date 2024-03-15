@@ -1,10 +1,12 @@
 use chrono::{DateTime, Utc};
 use uuid::Uuid;
 
+use super::value_objects::email::Email;
+
 #[derive(Debug)]
 pub struct User {
     pub id: Uuid,
-    pub email: String,
+    pub email: Email,
     pub first_name: String,
     pub last_name: String,
     pub password_hash: String,
@@ -13,8 +15,15 @@ pub struct User {
 
 #[derive(Debug)]
 pub struct CreateUserDto {
+    pub email: Email,
+    pub first_name: String,
+    pub last_name: String,
+    pub password: String,
+}
+
+pub struct CreateUser {
     pub id: Uuid,
-    pub email: String,
+    pub email: Email,
     pub first_name: String,
     pub last_name: String,
     pub password_hash: String,
@@ -22,6 +31,6 @@ pub struct CreateUserDto {
 
 #[derive(Debug)]
 pub struct LoginDto {
-    pub email: String,
+    pub email: Email,
     pub password_hash: String,
 }
