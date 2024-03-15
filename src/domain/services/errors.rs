@@ -1,3 +1,5 @@
+use tokio::task::JoinError;
+
 use crate::domain::repositories::UserRepositoryError;
 
 #[derive(Debug, thiserror::Error)]
@@ -10,6 +12,8 @@ pub enum AuthenticationServiceError {
         #[source]
         UserRepositoryError,
     ),
+    #[error("{0}")]
+    VerifyPassword(HashError),
 }
 
 #[derive(Debug, thiserror::Error)]
@@ -22,4 +26,24 @@ pub enum RegistrationServiceError {
         #[source]
         UserRepositoryError,
     ),
+    #[error("{0}")]
+    HashPassword(
+        #[from]
+        #[source]
+        HashError,
+    ),
+    #[error("Internal error.")]
+    Tokio(
+        #[from]
+        #[source]
+        JoinError,
+    ),
+}
+
+#[derive(Debug, thiserror::Error)]
+pub enum HashError {
+    #[error("The email or password is incorrect.")]
+    VerifiyFailed,
+    #[error("Internal error.")]
+    Argon2(String),
 }

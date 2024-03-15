@@ -1,11 +1,11 @@
-use super::value_objects::ValueObjectError;
+use super::value_objects::email::ParseEmailError;
 
 #[derive(Debug, thiserror::Error)]
 pub enum DomainError {
     #[error("{0}")]
-    ValueObject(
+    ParseEmail(
         #[from]
         #[source]
-        ValueObjectError,
+        ParseEmailError,
     ),
 }
