@@ -5,11 +5,16 @@ use std::sync::OnceLock;
 
 static EMAIL_REGEX: OnceLock<Regex> = OnceLock::new();
 
+/// Represents an email address and provides validation through a regular expression.
 #[derive(Debug, AsRef, Into, FromStr, Deref, From)]
 pub struct Email(String);
 
 impl Email {
+    /// # Panics
+    ///
+    /// Panics if the regex pattern for validating email addresses is invalid.
     pub fn is_email_valid(email: &str) -> bool {
+        // unwrap is safe here
         let reg = EMAIL_REGEX.get_or_init(|| {
             Regex::new(r"^([a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})$").unwrap()
         });

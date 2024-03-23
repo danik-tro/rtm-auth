@@ -4,11 +4,13 @@ use crate::domain::{
 };
 use async_trait::async_trait;
 
+#[allow(unused)]
 pub struct UserSqlxRepository {
     pool: sqlx::PgPool,
 }
 
 impl UserSqlxRepository {
+    #[must_use]
     pub fn new(pool: sqlx::PgPool) -> Self {
         Self { pool }
     }
@@ -16,11 +18,11 @@ impl UserSqlxRepository {
 
 #[async_trait]
 impl UserRepository for UserSqlxRepository {
-    async fn create_user(&self, user: CreateUser) -> Result<(), UserRepositoryError> {
+    async fn create_user(&self, _user: CreateUser) -> Result<(), UserRepositoryError> {
         todo!()
     }
 
-    async fn is_email_unique(&self, email: &Email) -> Result<bool, UserRepositoryError> {
+    async fn is_email_unique(&self, _email: &Email) -> Result<bool, UserRepositoryError> {
         todo!()
     }
 }
