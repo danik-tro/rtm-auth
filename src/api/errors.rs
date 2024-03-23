@@ -75,10 +75,9 @@ impl IntoResponse for ApiError {
                 RegistrationServiceError::EmailIsNotUnique => {
                     (StatusCode::CONFLICT, Json(s_err.to_string())).into_response()
                 }
-                RegistrationServiceError::UserRepository(_) => {
-                    StatusCode::INTERNAL_SERVER_ERROR.into_response()
-                }
-                RegistrationServiceError::HashPassword(_) | RegistrationServiceError::Tokio(_) => {
+                RegistrationServiceError::UserRepository(_)
+                | RegistrationServiceError::HashPassword(_)
+                | RegistrationServiceError::Tokio(_) => {
                     StatusCode::INTERNAL_SERVER_ERROR.into_response()
                 }
             },

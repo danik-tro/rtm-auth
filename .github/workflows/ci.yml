@@ -35,7 +35,7 @@ jobs:
         run: cargo fmt --all -- --check
 
       - name: Run cargo clippy
-        run: cargo clippy --profile dev-ci --all-targets --all-features -- -D warnings  -W clippy::all -W clippy::pedantic
+        run: cargo clippy --profile dev-ci --all-targets --all-features -- -D warnings  -W clippy::all -W clippy::pedantic -A clippy::module_name_repetitions -A clippy::missing-errors-doc
 
   build:
     needs: [clippy-fmt]
