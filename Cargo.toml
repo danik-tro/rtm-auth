@@ -5,7 +5,7 @@ edition = "2021"
 authors = ["Daniil Trotsenko <daniil.trotsenko.dev@gmail.com>"]
 
 [dependencies]
-tokio = { version = "1.0", features = ["full"]}
+tokio = { version = "1.37", features = ["full"]}
 
 config = "0.14.0"
 clap = { version = "4.5.4", features = ["derive"]}
