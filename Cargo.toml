@@ -25,8 +25,9 @@ argon2 = "0.5.3"
 
 # docs
 utoipa = {version = "4.2.0", features = ["axum_extras"]}
-utoipa-swagger-ui = { version = "6.0.0", features = ["axum"] }
+utoipa-swagger-ui = { version = "7.0.0", features = ["axum"] }
 utoipa-redoc = { version = "4.0.0", features = ["axum"] }
+
 
 axum = "0.7.5"
 tower = {version = "0.4.13", features = ["full"]}
