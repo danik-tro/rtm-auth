@@ -36,7 +36,7 @@ tower-http = { version = "0.5.2", features = ["full"] }
 chrono = {version = "0.4", features = ["serde"]}
 
 uuid7 = { version = "1.0.0", features = ["uuid", "serde"] }
-uuid = "1.9.1"
+uuid = "1.10.0"
 
 # tracing
 tracing = "0.1"
