@@ -17,7 +17,7 @@ async-trait = "0.1"
 anyhow = "1.0"
 thiserror = "1.0"
 
-derive_more = "0.99.18"
+derive_more = "1.0.0"
 num_cpus = "1.0"
 
 regex = "1.10.6"
