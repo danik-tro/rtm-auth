@@ -230,7 +230,7 @@ dependencies = [
  "serde_urlencoded",
  "sync_wrapper 1.0.0",
  "tokio",
- "tower",
+ "tower 0.4.13",
  "tower-layer",
  "tower-service",
  "tracing",
@@ -1066,7 +1066,7 @@ dependencies = [
  "pin-project-lite",
  "socket2",
  "tokio",
- "tower",
+ "tower 0.4.13",
  "tower-service",
  "tracing",
 ]
@@ -1878,7 +1878,7 @@ dependencies = [
  "sqlx",
  "thiserror",
  "tokio",
- "tower",
+ "tower 0.5.0",
  "tower-http",
  "tracing",
  "tracing-futures",
@@ -2555,12 +2555,27 @@ checksum = "b8fa9be0de6cf49e536ce1851f987bd21a43b771b09473c3549a6c853db37c1c"
 dependencies = [
  "futures-core",
  "futures-util",
- "hdrhistogram",
- "indexmap 1.9.3",
  "pin-project",
  "pin-project-lite",
- "rand",
+ "tokio",
+ "tower-layer",
+ "tower-service",
+ "tracing",
+]
+
+[[package]]
+name = "tower"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "36b837f86b25d7c0d7988f00a54e74739be6477f2aac6201b8f429a7569991b7"
+dependencies = [
+ "futures-core",
+ "futures-util",
+ "hdrhistogram",
+ "indexmap 2.2.5",
+ "pin-project-lite",
  "slab",
+ "sync_wrapper 0.1.2",
  "tokio",
  "tokio-util",
  "tower-layer",
@@ -2592,7 +2607,7 @@ dependencies = [
  "pin-project-lite",
  "tokio",
  "tokio-util",
- "tower",
+ "tower 0.4.13",
  "tower-layer",
  "tower-service",
  "tracing",
