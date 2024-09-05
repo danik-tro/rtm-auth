@@ -2839,9 +2839,9 @@ dependencies = [
 
 [[package]]
 name = "uuid7"
-version = "1.0.0"
+version = "1.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c344f6d02fcee3e55d08e246368bc080df7b2707b263e53075e3635f6b444a64"
+checksum = "dcdd44ee52871613b4e35bb697766f01f8c84636eaa5f97649ce6a43d9cd595d"
 dependencies = [
  "fstr",
  "rand",
