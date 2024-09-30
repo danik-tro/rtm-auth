@@ -29,7 +29,7 @@ utoipa-swagger-ui = { version = "7.0.0", features = ["axum"] }
 utoipa-redoc = { version = "4.0.0", features = ["axum"] }
 
 
-axum = "0.7.5"
+axum = "0.7.7"
 tower = {version = "0.5.1", features = ["full"]}
 tower-http = { version = "0.6.1", features = ["full"] }
 
