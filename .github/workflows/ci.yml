@@ -24,7 +24,7 @@ jobs:
           - 1.78.0 
     steps:
       - name: Checkout sources
-        uses: actions/checkout@v4.2.0
+        uses: actions/checkout@v4.2.1
 
       - name: Install toolchain
         uses: dtolnay/rust-toolchain@master
@@ -49,7 +49,7 @@ jobs:
 
     steps:
       - name: Checkout sources
-        uses: actions/checkout@v4.2.0
+        uses: actions/checkout@v4.2.1
 
       - name: Install toolchain
         uses: dtolnay/rust-toolchain@master
