@@ -17,7 +17,7 @@ async-trait = "0.1"
 anyhow = "1.0"
 thiserror = "1.0"
 
-derive_more = "1.0.0"
+derive_more = { version = "1.0.0", features = ["full"] }
 num_cpus = "1.0"
 
 regex = "1.11.1"
